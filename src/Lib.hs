@@ -92,7 +92,7 @@ parse :: String -> Maybe Expr
 parse s = let tokens = tokenize s in
     shuntingYard [] [] tokens
 
--- [Expr] and [BinOp] are the stacks of operands and pending tokens
+-- [Expr] and [Token] are the stacks of operands and pending tokens
 shuntingYard :: [Expr] -> [Token] -> [Token] -> Maybe Expr
 shuntingYard operands tokens []     = applyRemaining operands tokens
 shuntingYard operands tokens (t:ts) = case t of
