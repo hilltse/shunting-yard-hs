@@ -36,7 +36,14 @@ eval :: Expr -> Integer
 eval (Value x) = x
 eval (Apply2 (Op2 f) expr1 expr2) = f (eval expr1) (eval expr2)
 
-binOps = [('+', BinOp (Op2 (+)) (Prec 3) LeftAssoc),('-', BinOp (Op2 (-)) (Prec 3) LeftAssoc),('*', BinOp (Op2 (*)) (Prec 4) LeftAssoc),('/', BinOp (Op2 div) (Prec 4) LeftAssoc)]
+binOps =
+    [
+        ('+', BinOp (Op2 (+)) (Prec 3) LeftAssoc),
+        ('-', BinOp (Op2 (-)) (Prec 3) LeftAssoc),
+        ('*', BinOp (Op2 (*)) (Prec 4) LeftAssoc),
+        ('/', BinOp (Op2 div) (Prec 4) LeftAssoc),
+        ('^', BinOp (Op2 (^)) (Prec 5) RightAssoc)
+    ]
 
 binOpMap = Map.fromList binOps
 
