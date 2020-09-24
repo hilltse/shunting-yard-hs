@@ -26,8 +26,6 @@ dependencies:
 library:
   source-dirs: src
 
-executables:
-
 tests:
   shunting-yard-test:
     main:                Spec.hs

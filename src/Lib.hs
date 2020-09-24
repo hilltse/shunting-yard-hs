@@ -2,8 +2,18 @@ module Lib where
 import qualified Data.Map as Map
 import Data.Char (ord, isDigit)
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+repl :: IO ()
+repl = do
+    input <- getLine
+    if input == "q" then return () else do
+        let result = do
+            expr <- parse input
+            return $ eval expr
+        
+        case result of
+            Just x  -> print x
+            Nothing -> putStrLn "invalid expression"
+        repl
 
 -- Precedence of operation
 newtype Prec = Prec Integer deriving (Eq, Ord)
